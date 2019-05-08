@@ -1,0 +1,12 @@
+{
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ilcande/indecision-app.git",
+  "author": "Luca Candela <ilcande_prime@live.it>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
