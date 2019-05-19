@@ -1,82 +1,37 @@
 'use strict';
 
-console.log('App.js is running');
-
-// JSX - Javascript XML
-var app = {
-  title: 'Indecision App',
-  subtitle: 'A simple TODO list built in React',
-  options: ['One', 'Two']
+var add = function add(a, b) {
+  // console.log(arguments);
+  return a + b;
 };
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options.length > 0 ? 'these are your available options' : 'No options available'
-  ),
-  React.createElement(
-    'ol',
-    null,
-    React.createElement(
-      'li',
-      null,
-      'Item one'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item two'
-    )
-  )
-);
+console.log(add(20, 30));
 
 var user = {
   name: 'Luca',
-  age: 31,
-  location: 'Foggia'
+  cities: ['Sydney', 'Barcelona', 'London'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
+
+    return this.cities.map(function (city) {
+      return _this.name + ' has lived in ' + city;
+    });
+    // this.cities.forEach((city) => {
+    //   console.log(this.name + ' has lived in ' + city)
+    // });
+  }
 };
 
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      'p',
-      null,
-      'Location: ',
-      location
-    );
+console.log(user.printPlacesLived());
+
+var multiplier = {
+  numbers: [2, 4, 6],
+  multiplyBy: 3,
+  multiply: function multiply() {
+    return this.numbers.map(function (number) {
+      return number * number;
+    });
   }
-}
+};
 
-var templateTwo = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    user.name ? user.name : 'Anonymous'
-  ),
-  user.age && user.age >= 18 && React.createElement(
-    'p',
-    null,
-    'Age: ',
-    user.age
-  ),
-  getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+console.log(multiplier.multiply());
