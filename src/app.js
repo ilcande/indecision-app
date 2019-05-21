@@ -4,51 +4,51 @@ console.log('App.js is running');
 const app = {
   title: 'Indecision App',
   subtitle: 'A simple TODO list built in React',
-  options: ['One', 'Two']
+  options: []
 }
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>{app.subtitle}</p>}
-    <p>{app.options.length > 0 ? 'these are your available options' : 'No options available'}</p>
-    <ol>
-      <li>Item one</li>
-      <li>Item two</li>
-    </ol>
-  </div>
-);
+const onFormSubmit = (e) => {
+  e.preventDefault();
 
-let count = 0;
-const addOne = () => {
-  count++;
-  renderCounterApp();
-};
-const minusOne = () => {
-  count -= 1;
-  renderCounterApp();
-};
-const resetCounter = () => {
-  count = 0;
-  renderCounterApp();
+  const option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    renderIndecisionApp();
+  }
 };
 
-const appRoot = document.getElementById('app');
+const removeAll = () => {
+  app.options.length = 0;
+  renderIndecisionApp();
+};
 
-const renderCounterApp = () => {
-  const templateThree = (
+const renderIndecisionApp = () => {
+  const template = (
     <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={resetCounter}>Reset</button>
+      <h1>{app.title}</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <p>{app.options.length > 0 ? 'these are your available options' : 'No options available'}</p>
+      <p>{app.options.length}</p>
+      <button onClick={removeAll}>Remove All</button>
+      <ol>
+        <li>Item one</li>
+        <li>Item two</li>
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option"/>
+        <button>Add Option</button>
+      </form>
     </div>
   );
 
-  ReactDOM.render(templateThree, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+
+const appRoot = document.getElementById('app');
+renderIndecisionApp();
 
 // const user = {
 //   name: 'Luca',
